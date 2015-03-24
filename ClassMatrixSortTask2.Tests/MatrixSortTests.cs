@@ -28,7 +28,7 @@ namespace ClassMatrixSortTask2.Tests
             }
             int[][] matrix1 = (Int32[][])matrix.Clone();
 
-            Func<int[], int[], bool> comparer = (i, j) => i.Sum() < j.Sum();
+            Func<int[], int[], int> comparer = (i, j) => i.Sum() - j.Sum();
 
             MatrixSort.Sort(matrix, comparer);
 
@@ -63,8 +63,8 @@ namespace ClassMatrixSortTask2.Tests
                 }
             }
             int[][] matrix1 = (Int32[][])matrix.Clone();
-            
-            Func<int[], int[], bool> comparer = (i, j) => i.Max((k) => Math.Abs(k)) < j.Max((k) => Math.Abs(k));
+
+            Func<int[], int[], int> comparer = (i, j) => i.Max((k) => Math.Abs(k)) - j.Max((k) => Math.Abs(k));
 
             MatrixSort.Sort(matrix, comparer);
 
@@ -101,7 +101,7 @@ namespace ClassMatrixSortTask2.Tests
                 }
             }
 
-            Func<int[], int[], bool> comparer = (i, j) => i.Max((k) => Math.Abs(k)) < j.Max((k) => Math.Abs(k));
+            Func<int[], int[], int> comparer = (i, j) => i.Max((k) => Math.Abs(k)) - j.Max((k) => Math.Abs(k));
 
             MatrixSort.Sort(matrix, comparer);
 
@@ -113,7 +113,7 @@ namespace ClassMatrixSortTask2.Tests
         {
             int[][] matrix = null;
 
-            Func<int[], int[], bool> comparer = (i, j) => i.Max((k) => Math.Abs(k)) < j.Max((k) => Math.Abs(k));
+            Func<int[], int[], int> comparer = (i, j) => i.Max((k) => Math.Abs(k)) - j.Max((k) => Math.Abs(k));
 
             MatrixSort.Sort(matrix, comparer);
 
@@ -139,7 +139,7 @@ namespace ClassMatrixSortTask2.Tests
             }
             int[][] matrix1 = (Int32[][])matrix.Clone();
 
-            Func<int[], int[], bool> comparer = null;
+            Func<int[], int[], int> comparer = null;
 
             MatrixSort.Sort(matrix, comparer);
 
@@ -269,7 +269,7 @@ namespace ClassMatrixSortTask2.Tests
         {
             int[][] matrix = null;
 
-            Func<int[], int[], bool> comparer = (i, j) => i.Max((k) => Math.Abs(k)) < j.Max((k) => Math.Abs(k));
+            AbsMaxArrayComparer comparer = new AbsMaxArrayComparer();
 
             MatrixSort.Sort(matrix, comparer);
 
