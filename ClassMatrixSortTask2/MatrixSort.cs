@@ -13,7 +13,7 @@ namespace ClassMatrixSortTask2
         /// </summary>
         /// <param name="array"></param>
         /// <param name="comparer"></param>
-        public static void Sort(int[][] array, Func<int[], int[], int> comparer)
+        public static void Sort2(int[][] array, Func<int[], int[], int> comparer)
         {
             int[] index;
 
@@ -57,9 +57,30 @@ namespace ClassMatrixSortTask2
         {
             if (object.Equals(comparer, null))
                 throw new ArgumentNullException("comparer parameter must not be null");
-            Sort(array, comparer.Comparer);
+            Sort2(array, comparer.Comparer);
         }
 
+        public static void Sort(int[][] array, Func<int[], int[], int> comparer)
+        {
+            if (object.Equals(comparer, null))
+                throw new ArgumentNullException("comparer parameter must not be null");
+            Sort(array,new Adapter(comparer));
+        }
+
+        private class Adapter : IComparer
+        {
+            private Func<int[], int[], int> customComparer;
+
+            public Adapter(Func<int[], int[], int> customComparer) 
+            {
+                this.customComparer = customComparer;
+            }
+                
+            public int Comparer(int[] a, int[] b)
+            {
+                return customComparer(a, b);
+            }
+        }
 
         private static void Qsort(int[][] array, int left, int right, Func<int[], int[], int> comparer, int[] index)
         {
